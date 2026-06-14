@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- Marca JS ativo ANTES do CSS pintar: se o script principal falhar, o conteudo .reveal aparece mesmo assim -->
+  <script>document.documentElement.classList.add('js');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pack 75 Planners Editáveis no Canva — Rotina Infantil</title>
   <meta name="description"
@@ -300,7 +302,9 @@
     }
 
     /* ── REVEAL ─────────────────────────────────────────────── */
-    .reveal {
+    /* So esconde para animar quando o JS esta garantidamente ativo (classe .js no <html>).
+       Se o script falhar (ex.: bloqueio de modulo na Vercel), o conteudo aparece normalmente. */
+    .js .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity .55s ease, transform .55s ease;
@@ -2344,7 +2348,7 @@
   <!-- ══════════════════════════════════════════════════════════
   JS — 4 IIFEs INDEPENDENTES
 ══════════════════════════════════════════════════════════ -->
-  <script type="module">
+  <script>
     // ── 1. SCROLL REVEAL ─────────────────────────────────────
     ; (function () {
       const els = document.querySelectorAll('.reveal');
