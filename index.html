@@ -677,10 +677,13 @@
       animation-play-state: paused;
     }
 
-    /* Cada slide: ~2 visíveis por vez no mobile */
+    /* Cada slide: ~2 visíveis por vez no mobile.
+       aspect-ratio = proporcao real das imagens (1080x2255) -> faixa nunca colapsa
+       E a imagem aparece INTEIRA, na proporcao original, sem cortar. */
     .marquee-item {
       flex: 0 0 auto;
       width: clamp(180px, 46vw, 280px);
+      aspect-ratio: 1080 / 2255;
       border-radius: var(--radius-card);
       overflow: hidden;
       background: var(--lilas-deep);
@@ -689,7 +692,8 @@
 
     .marquee-item img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: contain;
       display: block;
     }
 
